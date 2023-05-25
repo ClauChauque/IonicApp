@@ -13,6 +13,11 @@ export class MoviesListPage implements OnInit {
     private http:HttpClient
   ) { }
 
+  createTemplate(url:string){
+    const template=`https://image.tmdb.org/t/p/w500/${url}`
+    return template
+  }
+
   ngOnInit() {
     this.http.get<any>('https://api.themoviedb.org/3/discover/movie?api_key=373d3d64f286e9fc62879bb68579a452&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate')
     .subscribe(res=>{

@@ -5,9 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item *ngFor="let item of movies">
-      <ion-label>{{item.title}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="4" offsetMd="4">
+        <ion-list>
+          <ion-item *ngFor="let item of movies" [routerLink]="['/movie/' + item.id]">
+            <ion-avatar slot="start">
+              <img src={{createTemplate(item.backdrop_path)}} alt="foto_pelicula">
+            </ion-avatar>
+            <ion-label>{{item.title}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

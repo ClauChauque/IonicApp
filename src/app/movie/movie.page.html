@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>movie</ion-title>
+    <ion-button slot="start">
+      <ion-back-button defaultHref="movies-list"></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeMd="4" offsetMd="4">
+        <div *ngIf="film">
+          <ion-card>
+            <ion-card-content>
+              <img src={{createTemplate(film.backdrop_path)}} alt="foto_pelicula">
+              <ion-card-title>
+                {{film.title}}
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
