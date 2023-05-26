@@ -1,6 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>moviesList</ion-title>
+    <div *ngif="page==1">
+      <ion-button slot="start" (click)="backPage()"><</ion-button>
+    </div>
+      <ion-button slot="end" (click)="nextPage()">></ion-button>
   </ion-toolbar>
 </ion-header>
 
