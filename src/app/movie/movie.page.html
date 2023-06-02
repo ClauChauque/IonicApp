@@ -13,13 +13,23 @@
       <ion-col sizeMd="4" offsetMd="4">
         <div *ngIf="film">
           <ion-card>
+            <img src={{createTemplate(film.backdrop_path)}} alt="foto_pelicula">
+            <ion-card-header>
+              <ion-card-title>{{film.title}}</ion-card-title>
+              <ion-card-subtitle>Fecha de estreno: {{film.release_date}}</ion-card-subtitle>
+            </ion-card-header>
             <ion-card-content>
-              <img src={{createTemplate(film.backdrop_path)}} alt="foto_pelicula">
-              <ion-card-title>
-                {{film.title}}
-              </ion-card-title>
+              {{film.overview}}
             </ion-card-content>
+            <h5>Rating: {{film.vote_average}}</h5>
+            <h6>Géneros:</h6>
+          <ion-list>
+            <ion-item *ngFor="let genero of film.genres">
+              <ion-label>{{genero.name}}</ion-label>
+            </ion-item>
+          </ion-list>
           </ion-card>
+          
         </div>
       </ion-col>
     </ion-row>

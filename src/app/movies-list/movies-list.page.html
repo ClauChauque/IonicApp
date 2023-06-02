@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>moviesList</ion-title>
-    <div *ngif="page==1">
-      <ion-button slot="start" (click)="backPage()"><</ion-button>
+    <div *ngIf="page>1">
+      <ion-button slot="end" (click)="backPage()"><</ion-button>
     </div>
       <ion-button slot="end" (click)="nextPage()">></ion-button>
   </ion-toolbar>
@@ -12,15 +12,21 @@
   <ion-grid>
     <ion-row>
       <ion-col sizeMd="4" offsetMd="4">
-        <ion-list>
-          <ion-item *ngFor="let item of movies" [routerLink]="['/movie/' + item.id]">
-            <ion-avatar slot="start">
-              <img src={{createTemplate(item.backdrop_path)}} alt="foto_pelicula">
-            </ion-avatar>
-            <ion-label>{{item.title}}</ion-label>
-          </ion-item>
-        </ion-list>
+        <ion-card>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let item of movies" [routerLink]="['/movie/' + item.id]">
+                <ion-thumbnail slot="start">
+                  <img alt="foto_pelicula" src={{createTemplate(item.backdrop_path)}} />
+                </ion-thumbnail>
+                <ion-label>{{item.title}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
+
