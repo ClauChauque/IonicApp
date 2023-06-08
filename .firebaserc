@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ionic-273f8": {
+      "hosting": {
+        "app": [
+          "ionic-273f8"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ionic-273f8"
+  }
+}
