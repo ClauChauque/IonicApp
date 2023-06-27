@@ -24,7 +24,6 @@ export class RegisterPage implements OnInit {
   signUp(f:NgForm){
       this.authService.RegisterUser(f.value.email, f.value.password)      
       .then((res) => {
-        alert('usuario registrado')
         this.authService.SendVerificationMail()
       }).catch((error) => {
         this.showHelloToast("Hubo un error registrando el usuario") 
