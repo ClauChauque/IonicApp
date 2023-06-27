@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../services/auth.service";
 import {NgForm} from '@angular/forms';
+import { Toast } from '@capacitor/toast';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -13,13 +14,20 @@ export class RegisterPage implements OnInit {
     public router: Router
   ) { }
   ngOnInit(){}
+
+  showHelloToast = async (error:string) => {
+    await Toast.show({
+      text: error,
+    });
+  };
+
   signUp(f:NgForm){
       this.authService.RegisterUser(f.value.email, f.value.password)      
       .then((res) => {
         alert('usuario registrado')
-        this.router.navigate(['login']);
+        this.authService.SendVerificationMail()
       }).catch((error) => {
-        window.alert(error.message)
+        this.showHelloToast("Hubo un error registrando el usuario") 
       })
   }
 }

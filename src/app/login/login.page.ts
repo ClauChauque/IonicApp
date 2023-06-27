@@ -21,11 +21,19 @@ export class LoginPage implements OnInit {
     });
   };
 
+  consola(){
+    console.log("aca estoy")
+  }
+
+  redirectRegister(){
+    this.router.navigate(['register']); 
+  }
 
   logIn(f:NgForm) : void {
     this.authService.SignIn(f.value.email, f.value.password)
       .then((res) => {
         if(this.authService.isEmailVerified) {
+          console.log("es legal")
           this.router.navigate(['movies-list']);          
         } else {
           this.showHelloToast('Credenciales incorrectas')

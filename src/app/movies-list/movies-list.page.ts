@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Network } from '@capacitor/network';
+import { AuthenticationService } from "../services/auth.service";
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.page.html',
@@ -12,6 +12,7 @@ export class MoviesListPage implements OnInit {
   page:number=1;
 
   constructor(
+    public authService: AuthenticationService, 
     private http:HttpClient,
   ) { }
 
@@ -30,6 +31,9 @@ export class MoviesListPage implements OnInit {
     this.callAPI()
   }
 
+  signOut(){
+    this.authService.SignOut()
+  }
   callAPI(){
     this.http.get<any>(`https://api.themoviedb.org/3/discover/movie?api_key=373d3d64f286e9fc62879bb68579a452&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=${String(this.page)}&with_watch_monetization_types=flatrate`)
     .subscribe(res=>{

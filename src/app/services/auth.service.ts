@@ -36,11 +36,13 @@ export class AuthenticationService {
   // Register user with email/password
   RegisterUser(email:string, password:string) {
     return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+    this.SendVerificationMail()
   }
   // Email verification when new user register
   SendVerificationMail() {
     return this.ngFireAuth.currentUser.then((user) => {
       return user.sendEmailVerification().then(() => {
+        alert("Se te ha enviado un mail para verificar")
         this.router.navigate(['login']);
       });
     });
@@ -68,17 +70,13 @@ export class AuthenticationService {
     const user = JSON.parse(localStorage.getItem('user'));
     return user.emailVerified !== false ? true : false;
   }
-  // Sign in with Gmail
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
   // Auth providers
   AuthLogin(provider:any) {
     return this.ngFireAuth
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['movies-list']);
         });
         this.SetUserData(result.user);
       })
